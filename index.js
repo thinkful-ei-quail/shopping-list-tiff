@@ -29,7 +29,7 @@ function clicks(){
   $('.shopping-list').on('click', '.shopping-item-delete', event => {
     let currentItem = $(event.currentTarget).closest('li')
     console.log(currentItem)
-    
+    currentItem.remove()
   })
 }
 
