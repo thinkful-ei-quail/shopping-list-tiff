@@ -1,11 +1,10 @@
 function submit() {
-  $("#submitButton").click(event => {
+  $("#js-shopping-list-form").submit(event => {
     event.preventDefault();
-    console.log('hi')
-    const inputItem = $("shopping-list-entry").val();//storing info
+    const inputItem = $("#shopping-list-entry").val();//storing info
     if (inputItem != "") {
       $(".shopping-list").append(`<li>
-            <span class="shopping-item">"${inputItem}"</span>
+            <span class="shopping-item">${inputItem}</span>
             <div class="shopping-item-controls">
               <button class="shopping-item-toggle">
                 <span class="button-label">check</span>
@@ -17,26 +16,26 @@ function submit() {
           </li>`)
     }
   })
+}
 
-
-  $(submit);
-
-
+function clicks(){
   //toggle list item w/ hidden css
-  $(".shopping-item-toggle").click(event => {
-    event.preventDefault();
-    if (String.match('#shopping-item')) {
-      $('#shopping-item').css('.shopping-item_checked')
-    }
+  $(".shopping-list").on('click', '.shopping-item-toggle', event => {
+    let currentItemName = $(event.currentTarget).closest('li').find('.shopping-item')
+      currentItemName.toggleClass('shopping-item__checked')
   })
 
   //remove or empty list item
-  $('.shopping-item-delete').click(event => {
-    event.preventDefault();
-    $('inputItem').empty()
+  $('.shopping-list').on('click', '.shopping-item-delete', event => {
+    let currentItem = $(event.currentTarget).closest('li')
+    console.log(currentItem)
+    
   })
 }
 
+
+$(clicks);
+$(submit);
   //$("element").method("elementToChange")
   // ie: $(#class).append(src)
   // .className
